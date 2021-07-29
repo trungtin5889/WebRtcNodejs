@@ -7,9 +7,10 @@ window.SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecogn
   || window.msSpeechRecognition || window.oSpeechRecognition;
 debugger
 var config = {
-  wssHost: 'wss://192.169.1.7:8080/'
+  wssHost: 'wss://localhost:443/'
+  //wssHost: 'wss://webrtcweb.com:9449/'
   //wssHost: 'wss://wotpal.club'
-  // wssHost: 'wss://example.com/myWebSocket'
+  //wssHost: 'wss://example.com/chat'
 };
 var localVideoElem = null, 
   remoteVideoElem = null, 
@@ -57,7 +58,8 @@ function initiateCall() {
   navigator.getUserMedia({ "audio": true, "video": true }, function (stream) {
     debugger
     localVideoStream = stream;
-    localVideo.src = URL.createObjectURL(localVideoStream);
+    //localVideo.src = URL.createObjectURL(localVideoStream);
+    localVideo.srcObject = localVideoStream;
     peerConn.addStream(localVideoStream);
     createAndSendOffer();
   }, function(error) {
@@ -71,7 +73,8 @@ function answerCall() {
   // get the local stream, show it in the local video element and send it
   navigator.getUserMedia({ "audio": true, "video": true }, function (stream) {
     localVideoStream = stream;
-    localVideo.src = URL.createObjectURL(localVideoStream);
+    //localVideo.src = URL.createObjectURL(localVideoStream);
+    localVideo.srcObject = localVideoStream;
     peerConn.addStream(localVideoStream);
     createAndSendAnswer();
   }, function(error) { console.log(error);});

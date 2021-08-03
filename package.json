@@ -2,10 +2,10 @@
   "name": "simple-video-chat",
   "version": "0.1.0",
   "description": "Implement a simple audio/video chat by using WebRTC",
-  "main": "server.js",
+  "main": "server_two.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "start": "node server_two.js"
   },
   "repository": {
     "type": "git",
@@ -22,6 +22,7 @@
   "dependencies": {
     "express": "^4.14.0",
     "fs": "0.0.1-security",
+    "package": "^1.0.1",
     "ws": "^1.1.1"
   }
 }

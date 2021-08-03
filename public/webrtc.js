@@ -103,6 +103,7 @@ function createAndSendOffer() {
       var off = new RTCSessionDescription(offer);
       peerConn.setLocalDescription(new RTCSessionDescription(off), 
         function() {
+          debugger
           wsc.send(JSON.stringify({"sdp": off }));
         }, 
         function(error) { console.log(error);}
@@ -114,9 +115,10 @@ function createAndSendOffer() {
 
 function createAndSendAnswer() {
   peerConn.createAnswer(
-    function (answer) {
+    function (answer) {      
       var ans = new RTCSessionDescription(answer);
       peerConn.setLocalDescription(ans, function() {
+          debugger
           wsc.send(JSON.stringify({"sdp": ans }));
         }, 
         function (error) { console.log(error);}
@@ -132,6 +134,7 @@ function onIceCandidateHandler(evt) {
 };
 
 function onAddStreamHandler(evt) {
+  debugger
   videoCallButton.setAttribute("disabled", true);
   endCallButton.removeAttribute("disabled"); 
   // set remote video stream as source for remote video HTML5 element

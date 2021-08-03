@@ -3,7 +3,7 @@ var name;
 var connectedUser;
   
 //connecting to our signaling server
-var conn = new WebSocket('wss://192.169.1.7:8080');
+var conn = new WebSocket('wss://localhost:444/');
   
 conn.onopen = function () { 
    console.log("Connected to the signaling server"); 
@@ -101,10 +101,10 @@ function handleLogin(success) {
       //getting local video stream 
       navigator.webkitGetUserMedia({ video: true, audio: true }, function (myStream) { 
          stream = myStream; 
-			
+			debugger
          //displaying local video stream on the page 
-         localVideo.src = window.URL.createObjectURL(stream);
-			
+         //localVideo.src = window.URL.createObjectURL(stream);
+			localVideo.srcObject = stream;
          //using Google public stun server 
          var configuration = { 
             "iceServers": [{ "url": "stun:stun2.1.google.com:19302" }]
@@ -117,7 +117,8 @@ function handleLogin(success) {
 			
          //when a remote user adds stream to the peer connection, we display it 
          yourConn.onaddstream = function (e) { 
-            remoteVideo.src = window.URL.createObjectURL(e.stream); 
+            //remoteVideo.src = window.URL.createObjectURL(e.stream);
+            remoteVideo.srcObject = e.stream;
          };
 			
          // Setup ice handling 

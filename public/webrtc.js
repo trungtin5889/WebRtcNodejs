@@ -138,7 +138,8 @@ function onAddStreamHandler(evt) {
   videoCallButton.setAttribute("disabled", true);
   endCallButton.removeAttribute("disabled"); 
   // set remote video stream as source for remote video HTML5 element
-  remoteVideo.src = URL.createObjectURL(evt.stream);
+  //remoteVideo.src = URL.createObjectURL(evt.stream);
+  remoteVideo.srcObject = evt.stream;
 };
 
 function endCall() {
